@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TrackerExpenseMVC.Models.ExpenseMVC>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="color:#8d5192;margin-top:40px;">Expenses based on this Category</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<br />
+
+<table border="1" class="table table-stiped table-hover" style="border-radius:10px;border: 4px solid #8d5192;">
+    <tr style="background-color: #8d5192; color:white;height:25px;">
+        @*<th>
+            @Html.DisplayNameFor(model => model.EId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+           @* @Html.DisplayNameFor(model => model.Category.CName)*@
+            Category Name
+        </th>
+        <th>@*@Html.DisplayNameFor(model=>model.Category.CExpenseLimit)*@
+        Category Expense Limit</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.EId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CName)
+            </td>
+            <td>@Html.DisplayFor(modelItem=>item.Category.CExpenseLimit)</td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
+
+</table>

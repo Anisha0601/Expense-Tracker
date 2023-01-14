@@ -1,0 +1,65 @@
+﻿@model TrackerExpenseMVC.Models.ExpenseMVC
+@{
+    ViewBag.Title = "AddorEdit";
+}
+<br /><h2 style="color: #7e8e62 "><b>Create new expense</b></h2>
+<div style="height: 20px; width: 20px; border-radius: 50%; background-color: #7e8e62; color: #7e8e62 ">.</div>
+<div style="height: 10px; width: 10px; border-radius: 50%; background-color: #7e8e62; color: #7e8e62 ">.</div>
+<br />
+<br />
+<div style="background-color:#f2ebdd;border-radius:15px;">
+    <div class="form-body" style="background-color:#7e8e65;padding:90px;text-align:center;width:560px;border-bottom-left-radius:15px;border-top-left-radius:15px;color:white;">
+        @using (Html.BeginForm(new { @style = "font-family:'poppins',sans-serif" }))
+        {
+            @Html.HiddenFor(model => model.EId)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, new { @style = "margin-right:195px;margin-left:40px;color:white" })<br />
+                @Html.TextBoxFor(model => model.Title, new { @style = "border:none;background:transparent;border-bottom:1px solid #d3d3d3;color:white;" })<br />
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @style = "margin-right:195px;margin-left:95px;color:white" })<br />
+                @Html.TextBoxFor(model => model.Description, new { @place = "Enter Category", @style = "border:none;background:transparent;border-bottom:1px solid #d3d3d3;" })<br />
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amount, new { @style = "margin-right:195px;margin-left:73px;color:white" })<br />
+                @Html.TextBoxFor(model => model.Amount, new { @style = "border:none;background:transparent;border-bottom:1px solid #d3d3d3;" })<br />
+                @Html.ValidationMessageFor(model => model.Amount)
+            </div>
+
+           @* <div class="form-group">
+                @Html.LabelFor(model => model.CId, new { @style = "margin-right:195px;margin-left:40px;color:white" })<br />
+                @Html.TextBoxFor(model => model.CId, new { @style = "border:none;background:transparent;border-bottom:1px solid #d3d3d3;", @place = "Enter Category" })<br />
+                @Html.ValidationMessageFor(model => model.CId)
+            </div>*@
+
+            
+            <div class="form-group">
+                <label class="control-label col-md-2" style="margin-right:195px;margin-left:88px;">Category</label><br /><br />
+                <div class="col-md-10" style="color:white;">
+                    @Html.DropDownListFor(model=>model.CId, ViewBag.Id as SelectList,"Select Category", new {@class="form-control",@style="color:white;background-color:#7e8e62;width:170px;margin-left:88px"})
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+
+                <input type="submit" value="Submit" class="btn button" style="background-color: white; color: #7e8e65;" />
+                @*<input type="reset" value="Reset" class="btn button" />*@
+                 <a href="@Url.Action("Index","Expense")" class="btn button" style="background-color:white;color:#7e8e65;">Go to Expense</a>
+            </div>
+        }
+
+    </div>
+
+    <img src="~/Content/Image/calculation1.jpeg"  alt="Image" style="position: absolute; left: 964px; top: 339px;width:350px;border-radius:10px;object-fit:contain" />
+    </div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<TrackerExpenseMVC.Models.ExpenseMVC>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="color: #33006f "><b>Expense List</b></h2>
+<div style="height:20px;width: 20px; border-radius: 50%; background-color: #8d5192; color: #8d5192 ">g</div>
+<div style="height:10px;width: 10px; border-radius: 50%; background-color: #8d5192; color: #8d5192 ">.</div>
+<br />
+<br />
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    <a href="@Url.Action("AddorEdit","Expense")"class="btn btn-default" style="background-color: #8d5192; color: white; border-radius: 5%; float: right;">Add Expense</a>
+</p>
+<br />
+<br />
+
+
+<table class="table table-striped table-hover" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)">
+    <thead class="table-heading">
+    <tr style="background-color: #8d5192; color:white">
+        @*<th>
+            @Html.DisplayNameFor(model => model.EId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+           @* @Html.DisplayNameFor(model => model.Category.CName)*@
+            Category Name
+        </th>
+        <th>Date</th>
+        <th>Actions</th>
+    </tr>
+        </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.EId)
+        </td>*@
+        <td style="font-weight:600">
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td style="color:#8d5192; font-weight:600">
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td style="font-weight:600">
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td style="color:#8d5192;font-weight:600">
+            @Html.DisplayFor(modelItem => item.Category.CName)
+        </td>
+        <td>@DateTime.Now</td>
+        <td >
+            <a href="@Url.Action("AddorEdit", "Expense", new { id = item.EId })" class="btn btn-default" style="background-color: #8d5192; color: white;"><i class="fa fa-pencil"></i>Edit</a>
+          @*  @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+        <a onClick="Delete(@item.EId)" class="btn btn-default" style="background-color: #8d5192; color: white;"><i class="fa fa-trash"></i>Delete</a>
+        </td>
+    </tr>
+}
+
+</table>
+
+<!--<p>-->
+    @*@Html.ActionLink("Create New", "Create")*@
+    <!--<a href="@Url.Action("AddorEdit","Expense")" class="btn btn-default" style="background-color:#24a0ed;color:white;border-radius:5%;float:right;">Create</a>
+</p>-->
+       
+
+
+
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        })
+        function Delete(id) {
+            alertify.confirm('WEBAPI CRUD OPERATIONS', 'Are you sure to delete this record?', function () {
+                window.location.href = '@Url.Action("Delete", "Expense")/' + id;
+            },null);
+        }</script>}
